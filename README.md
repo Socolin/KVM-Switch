@@ -18,27 +18,35 @@ The remaining tasks are:
 - Write documentation
 - Test `TUD_OPT_HIGH_SPEED`
 
-## AI Usage
+## Build
 
-Basically, I see AI as a tool, and I have fun writing code, so:
+### Prerequisites
 
-- All the code in `src/` is written by a human.
-- AI was used as a learning assistant, to help understand and learn all the USB / HID / Electronic stuff.
-- AI was used to review the code.
-- AI was used to generate some test cases (but the test logic is human-made) (see `AI-generated` comments).
+- cmake
+- Clone https://github.com/raspberrypi/pico-sdk
+- Clone https://github.com/raspberrypi/picotool
 
-## History
+### Build
 
-This project started to fix an issue I had with my current commercial KVM switch, that is the delay to switch between
-2 computers; I wanted a shortcut to switch instantaneously. This project is also an opportunity for me to learn a some
-few things with electronic and discover dev on a microcontroller. Feel free to provide any feedback, as I'm still
-learning.
+```sh
+git clone git@github.com:Socolin/KVM-Switch.git
+cd KVM-Switch
+git submodule update --init --recursive
+mkdir build
+cd build
+cmake .. -DPICO_BOARD=pico2 -DPICO_SDK_PATH={PATH_TO_PICOSDK} -DPICOTOOL_FETCH_FROM_GIT_PATH={PATH_TO_PICOTOOL}
+make -j
+# Then output is in src/node and src/controller
+```
 
-I first tried to use CH9329 and CH9350 to avoid all the USB parts and get this done quickly. However, during 
-my testing I discovered that the CH9329 has a HID descriptor that does not expose all the features I wanted (like the 
-mouse pan) and the CH9350 felt the same way. So I learnt a lot about HID descriptors, tinyUSB, etc… And, now this project
-should support any HID device (not just keyboard and mouse) like Gamepad etc… I kept the code I used to use those chips
-in `src/legacy` if anyone need this, feel free to use it 
+### Flash
+
+To simplify flashing both, you can use the serial number of your pico with `picotool info -a` the serial will look like `46AA0E6255B66826`
+
+```sh
+picotool load --ser $PICO_PI_CONTROLLER_SERIAL -f -x src/node/kvm_node.uf2;
+picotool load --ser $PICO_PI_NODE_SERIAL -f -x src/controller/kvm_controller.uf2;
+```
 
 ## Hardware Architecture
 
@@ -58,3 +66,25 @@ The KVM Switch can be configured through a web UI. It can be accessed with a web
 of the config UI is in `tools/configurator`
 
 ![Web UI](doc/img/config-ui.png)
+
+## AI Usage
+
+Basically, I see AI as a tool, and I have fun writing code, so:
+
+- All the code in `src/` is written by a human.
+- AI was used as a learning assistant, to help understand and learn all the USB / HID / Electronic stuff.
+- AI was used to review the code.
+- AI was used to generate some test cases (but the test logic is human-made) (see `AI-generated` comments).
+
+## History
+
+This project started to fix an issue I had with my current commercial KVM switch, that is the delay to switch between
+2 computers; I wanted a shortcut to switch instantaneously. This project is also an opportunity for me to learn a some
+few things with electronic and discover dev on a microcontroller. Feel free to provide any feedback, as I'm still
+learning.
+
+I first tried to use CH9329 and CH9350 to avoid all the USB parts and get this done quickly. However, during
+my testing I discovered that the CH9329 has a HID descriptor that does not expose all the features I wanted (like the
+mouse pan) and the CH9350 felt the same way. So I learnt a lot about HID descriptors, tinyUSB, etc… And, now this project
+should support any HID device (not just keyboard and mouse) like Gamepad etc… I kept the code I used to use those chips
+in `src/legacy` if anyone need this, feel free to use it
