@@ -3,8 +3,11 @@ name: Deploy Configurator
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "tools/configurator/**"
+      - ".github/workflows/deploy-configurator.yml"
     tags: [ "v*" ]
-  workflow_dispatch:   # lets you deploy manually from the Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: read

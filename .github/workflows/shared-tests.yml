@@ -5,6 +5,9 @@ name: Run Tests
 on:
   push:
     branches: [ "main", "ci" ]
+    paths:
+      - "src/**"
+      - "test/**"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
