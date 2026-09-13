@@ -11,11 +11,12 @@ This project is still in development. The code is almost done, and I need to des
 So far I can use it as a KVM switch. I can select the computer to use with a keyboard shortcut. I was not able to
 test with exotic keyboard / mouse yet, but those should be supported.
 
+The detailed documentation is available at [doc/technical.md](doc/technical.md).
+
 The remaining tasks are: 
 - Test with 2 nodes (switch between 3 computers).
 - Design PCB for 1 node (and maybe for 2 nodes later)
 - Test with 3 hid devices.
-- Write documentation
 - Test `TUD_OPT_HIGH_SPEED`
 
 ## Build
@@ -44,8 +45,8 @@ make -j
 To simplify flashing both, you can use the serial number of your pico with `picotool info -a` the serial will look like `46AA0E6255B66826`
 
 ```sh
-picotool load --ser $PICO_PI_CONTROLLER_SERIAL -f -x src/node/kvm_node.uf2;
-picotool load --ser $PICO_PI_NODE_SERIAL -f -x src/controller/kvm_controller.uf2;
+picotool load --ser $PICO_PI_NODE_SERIAL -f -x src/node/kvm_node.uf2;
+picotool load --ser $PICO_PI_CONTROLLER_SERIAL -f -x src/controller/kvm_controller.uf2;
 ```
 
 ## Hardware Architecture
