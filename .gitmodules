@@ -4,3 +4,6 @@
 [submodule "test/unity"]
 	path = test/unity
 	url = git@github.com:ThrowTheSwitch/Unity.git
+[submodule "libs/KiCad-RP-Pico"]
+	path = libs/KiCad-RP-Pico
+	url = https://github.com/ncarandini/KiCad-RP-Pico.git
