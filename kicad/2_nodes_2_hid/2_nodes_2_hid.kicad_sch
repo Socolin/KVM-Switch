@@ -3438,7 +3438,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4.7 µF"
+		(property "Value" "10 µF"
 			(at 35.56 88.8999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4923,7 +4923,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4.7 µF"
+		(property "Value" "10 µF"
 			(at 35.56 46.9899 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -673,7 +673,7 @@
         "uuid": "df6543e4-ddf4-4c07-bf6b-6cee9f8c2776"
       }
     ],
-    "used_designators": "USB_C2,U1-2,J1-2,USB2_RDP1,R1-4,Q_RST_1,Controller1,SW1,USB1_RDM1,#PWR1-22,USB1_RDP1,USB1_R5-8,USB2_RDM1,C1",
+    "used_designators": "C1,USB_C2,U1-2,J1-2,USB2_RDP1,R1-4,Q_RST_1,USB2_RDM1,USB1_R5-8,Controller1,SW1,USB1_RDM1,#PWR1-22,USB1_RDP1",
     "variants": []
   },
   "sheets": [
