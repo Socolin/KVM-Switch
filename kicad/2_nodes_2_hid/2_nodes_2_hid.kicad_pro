@@ -156,7 +156,7 @@
         "min_track_width": 0.2,
         "min_via_annular_width": 0.1,
         "min_via_diameter": 0.5,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
@@ -240,7 +240,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "1"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -611,12 +611,24 @@
           "label": "Datasheet",
           "name": "Datasheet",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "#",
+          "name": "${ITEM_NUMBER}",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description",
+          "name": "Description",
+          "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
       "include_excluded_from_bom": true,
-      "name": "Default Editing",
+      "name": "",
       "sort_asc": true,
       "sort_field": "Reference"
     },
@@ -661,7 +673,7 @@
         "uuid": "df6543e4-ddf4-4c07-bf6b-6cee9f8c2776"
       }
     ],
-    "used_designators": "USB2_RDM1,USB1_RDP1,USB1_RDM1,#PWR1-22,Controller1,SW1,Q_RST_1,USB1_R5-8,R1-4,J1-2,USB2_RDP1,U1-2",
+    "used_designators": "USB_C2,U1-2,J1-2,USB2_RDP1,R1-4,Q_RST_1,Controller1,SW1,USB1_RDM1,#PWR1-22,USB1_RDP1,USB1_R5-8,USB2_RDM1,C1",
     "variants": []
   },
   "sheets": [

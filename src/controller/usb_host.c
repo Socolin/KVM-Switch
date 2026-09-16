@@ -27,7 +27,7 @@ void usb_host_init() {
     usb_host.should_process_actions = true;
 
     const pio_usb_configuration_t pio_cfg = {
-        .pin_dp = 6, // DM: 7
+        .pin_dp = 7, // DM: 6
         .pio_tx_num = PIO_USB_TX_DEFAULT,
         .sm_tx = PIO_SM_USB_TX_DEFAULT,
         .tx_ch = PIO_USB_DMA_TX_DEFAULT,
@@ -36,12 +36,13 @@ void usb_host_init() {
         .sm_eop = PIO_SM_USB_EOP_DEFAULT,
         .alarm_pool = NULL,
         .debug_pin_rx = PIO_USB_DEBUG_PIN_NONE,
-        .debug_pin_eop = PIO_USB_DEBUG_PIN_NONE
+        .debug_pin_eop = PIO_USB_DEBUG_PIN_NONE,
+        .pinout = PIO_USB_PINOUT_DMDP
     };
     tuh_configure(BOARD_TUH_RHPORT, TUH_CFGID_RPI_PIO_USB_CONFIGURATION, &pio_cfg);
     tuh_init(BOARD_TUH_RHPORT);
 
-    pio_usb_host_add_port(8, PIO_USB_PINOUT_DPDM);
+    pio_usb_host_add_port(9, PIO_USB_PINOUT_DMDP);
 }
 
 
