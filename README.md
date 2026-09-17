@@ -51,11 +51,9 @@ picotool load --ser $PICO_PI_CONTROLLER_SERIAL -f -x src/controller/kvm_controll
 
 ## Hardware Architecture
 
-![Wiring details](doc/img/wiring.png)
+### 2 Nodes With 2 HIDs
 
-You can also see this on Wokwi to get the name of the pins
-
-https://wokwi.com/projects/474027085801457665
+[See Schematic](doc/2_nodes_2_hid/2_nodes_2_hid.pdf)
 
 ## Software Architecture
 
