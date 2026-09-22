@@ -88,14 +88,14 @@ static bool wait_for_spi_ready(uint8_t gpio) {
 static __inline__ void node_link_start_transaction(
     const node_link_t *link
 ) {
-    gpio_put(link->spi_select_gpio, 1);
+    gpio_put(link->spi_select_gpio, 0);
     asm volatile("nop \n nop \n nop \n nop \n nop \n nop");
 }
 
 static __inline__ void node_link_end_transaction(
     const node_link_t *link
 ) {
-    gpio_put(link->spi_select_gpio, 0);
+    gpio_put(link->spi_select_gpio, 1);
     asm volatile("nop \n nop \n nop \n nop \n nop \n nop");
 }
 

@@ -28,6 +28,7 @@ void node_link_ctrl_init() {
 
         gpio_init(computer->spi_selector_gpio);
         gpio_set_dir(computer->spi_selector_gpio, GPIO_OUT);
+        gpio_put(computer->spi_selector_gpio, 1);
 
         gpio_init(computer->spi_ready_gpio);
         gpio_set_dir(computer->spi_ready_gpio, GPIO_IN);
