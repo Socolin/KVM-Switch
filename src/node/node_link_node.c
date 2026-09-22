@@ -50,7 +50,8 @@ static void node_link_node_process_received_message(
 
     switch (message->header.opcode) {
         case NL_CTRL_MESSAGE_OP_INIT: {
-            logf_info("Init message received from controller");
+            auto const message_data = (nl_ctrl_msg_init_data_t *) message->data;
+            logf_info("Init message received from controller. Node Id: %u", message_data->computer_id);
             break;
         }
         case NL_CTRL_MESSAGE_OP_HID_MOUNT: {
