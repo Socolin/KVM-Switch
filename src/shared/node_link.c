@@ -119,7 +119,7 @@ static bool node_link_write_read_blocking(
 ) {
     // Drain any pending data from the SPI RX FIFO.
     // Sometimes it seems some bytes are left and it's breaking all following transactions. (not sure what is happening)
-    node_link_drain_rx(link);
+    node_link_drain_rx_tx(link);
 
     if (link->is_controller) {
         if (!wait_for_spi_ready(link->spi_ready_gpio))
@@ -351,7 +351,9 @@ bool node_link_send_message_blocking(
         return false;
     }
 
-    node_link_exchange_ack(link, 1);
+    if (!node_link_exchange_ack(link, 1)) {
+        return false;
+    }
 
     if (rx_header.message_len > 0) {
         node_link_msg_t rx_message;
@@ -381,7 +383,7 @@ static uint16_t node_link_compute_transport_crc(
 void node_link_drain_buffer(
     const node_link_t *link
 ) {
-    node_link_drain_rx(link);
+    node_link_drain_rx_tx(link);
 
     // If this gpio is not set, the node is not reading
     if (!gpio_get(link->spi_ready_gpio)) {
@@ -396,12 +398,17 @@ void node_link_drain_buffer(
     log_warning("buffer drained");
 }
 
-void node_link_drain_rx(
+void node_link_drain_rx_tx(
     const node_link_t *link
 ) {
-    uint8_t b;
-    while (spi_is_readable(link->spi))
-        spi_read_blocking(link->spi, 0, &b, 1);
+    // Wait for the SPI bus to stop transferring data before flushing
+    while (spi_get_hw(link->spi)->sr & SPI_SSPSR_BSY_BITS) {
+        tight_loop_contents();
+    }
+    // Disable SPI to flush FIFOs
+    spi_get_hw(link->spi)->cr1 &= ~SPI_SSPCR1_SSE_BITS;
+    // Re-enable SPI
+    spi_get_hw(link->spi)->cr1 |= SPI_SSPCR1_SSE_BITS;
 }
 
 uint64_t node_link_get_us_delay_before_retry(

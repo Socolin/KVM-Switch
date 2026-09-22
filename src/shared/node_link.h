@@ -188,7 +188,7 @@ void node_link_drain_buffer(
     const node_link_t *link
 );
 
-void node_link_drain_rx(
+void node_link_drain_rx_tx(
     const node_link_t *link
 );
 
