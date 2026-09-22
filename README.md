@@ -55,6 +55,14 @@ picotool load --ser $PICO_PI_CONTROLLER_SERIAL -f -x src/controller/kvm_controll
 
 [See Schematic](doc/2_nodes_2_hid/2_nodes_2_hid.pdf)
 
+### 2 Nodes With 3 HIDs
+
+[See Schematic](doc/2_nodes_3_hid/2_nodes_3_hid.pdf)
+
+### 3 Nodes With 3 HIDs
+
+[See Schematic](doc/3_nodes_3_hid/3_nodes_3_hid.pdf)
+
 ## Software Architecture
 
 ![Diagram showing the software architecture of the project. Detailing which core execute which part and which the architecture of node and controller boards](doc/img/software_architecture.png)
