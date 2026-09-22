@@ -10,6 +10,7 @@
 #include "../shared/logger.h"
 #include "../shared_usb/usb_device.h"
 
+#include "config.h"
 #include "computer_manager.h"
 #include "hid_device_manager.h"
 #include "hid_keyboard_report_util.h"

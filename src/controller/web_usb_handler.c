@@ -1,5 +1,6 @@
 #include "web_usb_handler.h"
 
+#include "config.h"
 #include "computer_manager.h"
 #include "hid_device_manager.h"
 #include "hid_manager.h"

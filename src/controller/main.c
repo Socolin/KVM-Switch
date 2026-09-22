@@ -76,7 +76,6 @@ int main() {
     stdio_init_all();
 
     logger_init(LOG_LEVEL_DEBUG, LOG_LEVEL_INFO);
-
     quick_reset_button_init();
 
     log_info("KVM controller is starting");
@@ -85,6 +84,9 @@ int main() {
 
     computer_manager_init();
     computer_manager_configure_computer(1, 22, 20, 21);
+#if MAX_COMPUTER > 2
+    computer_manager_configure_computer(2, 14, 26, 27);
+#endif
 
     hid_device_manager_init();
     hid_mgr_init();

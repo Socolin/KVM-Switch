@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "logger.h"
+#include "config.h"
 
 typedef struct {
     hid_device_t devices[MAX_HID_DEVICE];

@@ -4,9 +4,9 @@
 #include "pico/util/queue.h"
 
 #include "tusb_config.h"
+#include "config.h"
 
 #define LOCAL_COMPUTER_ID 0
-#define MAX_COMPUTER 2
 
 /**
  * Store the report sent by the computer for a given hid interface, like the LEDs status.

@@ -8,6 +8,7 @@
 #include "pio_usb_configuration.h"
 #include "tusb_config.h"
 
+#include "config.h"
 #include "kvm_switch_controller.h"
 #include "logger.h"
 
@@ -42,7 +43,10 @@ void usb_host_init() {
     tuh_configure(BOARD_TUH_RHPORT, TUH_CFGID_RPI_PIO_USB_CONFIGURATION, &pio_cfg);
     tuh_init(BOARD_TUH_RHPORT);
 
+    pio_usb_host_add_port(11, PIO_USB_PINOUT_DMDP);
+#if MAX_HID_DEVICE > 2
     pio_usb_host_add_port(9, PIO_USB_PINOUT_DMDP);
+#endif
 }
 
 

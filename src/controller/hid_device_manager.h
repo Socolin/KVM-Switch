@@ -1,6 +1,5 @@
 #pragma once
 
-#define MAX_HID_DEVICE 2
 #include <stdint.h>
 
 typedef struct {
