@@ -18,7 +18,7 @@ typedef struct {
 static node_link_node_t node = {};
 
 #define SPI_READY_GPIO 11
-#define DATA_READY_GPIO 10
+#define DATA_AVAILABLE_GPIO 10
 
 static void node_link_node_process_received_message(const node_link_msg_t *message, void *udata);
 
@@ -26,20 +26,20 @@ void node_link_node_init() {
     gpio_init(SPI_READY_GPIO);
     gpio_set_dir(SPI_READY_GPIO, GPIO_OUT);
     gpio_put(SPI_READY_GPIO, 0);
-    gpio_init(DATA_READY_GPIO);
-    gpio_set_dir(DATA_READY_GPIO, GPIO_OUT);
-    gpio_put(DATA_READY_GPIO, 0);
+    gpio_init(DATA_AVAILABLE_GPIO);
+    gpio_set_dir(DATA_AVAILABLE_GPIO, GPIO_OUT);
+    gpio_put(DATA_AVAILABLE_GPIO, 0);
 
     queue_init(&node.message_queue, sizeof(node_link_msg_t), 16);
     node_link_init_node(&node.link, spi1, SPI_READY_GPIO, node_link_node_process_received_message);
 }
 
-static void node_link_node_signal_data_ready() {
-    gpio_put(DATA_READY_GPIO, 1);
+static void node_link_node_signal_data_available() {
+    gpio_put(DATA_AVAILABLE_GPIO, 1);
 }
 
-static void node_link_node_clear_data_ready() {
-    gpio_put(DATA_READY_GPIO, 0);
+static void node_link_node_clear_data_available() {
+    gpio_put(DATA_AVAILABLE_GPIO, 0);
 }
 
 static void node_link_node_process_received_message(
@@ -126,7 +126,7 @@ void node_link_node_run() {
                 queue_remove_blocking(&node.message_queue, nullptr);
                 node_link_dispose_message(&message);
                 if (queue_is_empty(&node.message_queue)) {
-                    node_link_node_clear_data_ready();
+                    node_link_node_clear_data_available();
                 }
             }
         }
@@ -173,7 +173,7 @@ static bool node_link_node_enqueue_message(
     }
 
     if (queue_try_add(&node.message_queue, &message)) {
-        node_link_node_signal_data_ready();
+        node_link_node_signal_data_available();
         return true;
     }
     return false;
