@@ -66,6 +66,9 @@ void node_link_ctrl_restart_nodes() {
     gpio_init(RESTART_NODES_GPIO);
     gpio_set_dir(RESTART_NODES_GPIO, GPIO_OUT);
     sleep_us(10);
+    for (int i = 1; i < MAX_COMPUTER; i++) {
+        ctrl.node_ready[i] = false;
+    }
     gpio_set_dir(RESTART_NODES_GPIO, GPIO_IN);
 
     log_info("Waiting for nodes to be ready..");
